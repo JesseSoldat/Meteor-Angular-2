@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Parties } from '../../../../both/collections/parties.collection';
+// import { Party } from '../../../../both/models/party.model';
 
 import template from './parties-form.component.html';
  
@@ -33,4 +34,6 @@ export class PartiesFormComponent implements OnInit {
 			this.addForm.reset();
 		}
 	}
+
+	
 }
