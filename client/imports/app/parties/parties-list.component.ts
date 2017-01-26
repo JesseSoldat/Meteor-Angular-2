@@ -15,6 +15,7 @@ export class PartiesListComponent {
  
   constructor() {
     this.parties = Parties.find({}).zone();
+    
   }
  
   removeParty(party: Party): void {

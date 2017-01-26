@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { Meteor } from 'meteor/meteor';
 
 import 'rxjs/add/operator/map';
 
@@ -30,10 +31,25 @@ export class PartyDetailsComponent implements OnInit, OnDestroy {
 					this.partyId = partyId
 
 					this.party = Parties.findOne(this.partyId);
+					console.log(this.party);
 				});
 	}
 
 	ngOnDestroy() {
     this.paramsSub.unsubscribe();
+  }
+
+  saveParty() {
+  	if(!Meteor.userId()){
+  		alert('Please log in to change this party');
+  		return;
+  	}
+    Parties.update(this.party._id, {
+      $set: {
+        name: this.party.name,
+        description: this.party.description,
+        location: this.party.location
+      }
+    });
   }
 }
